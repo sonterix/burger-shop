@@ -1,0 +1,67 @@
+@import 'assets/scss/_variables';
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  background-color: $color-dark-grey;
+
+  * {
+    box-sizing: border-box;
+
+    &:hover,
+    &:focus {
+      outline: none;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+
+    &.btn {
+      display: inline-block;
+      margin: 5px;
+      padding: 10px;
+      min-width: 90px;
+      font-size: $font-sm + 2;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: $color-white;
+      background-color: $color-dark-grey;
+      border: 2px solid $color-white;
+      border-radius: 3px;
+      transition: all $trans;
+
+      &:hover {
+        color: $color-dark-grey;
+        background-color: $color-white;
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+
+        &:hover {
+          color: $color-white;
+          background-color: $color-dark-grey;
+          border-color: $color-white;
+        }
+      }
+    }
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  .wrapper {
+    max-width: 1400px;
+    padding: 0 15px;
+    margin: 0 auto;
+    width: inherit;
+    height: inherit;
+  }
+}

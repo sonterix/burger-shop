@@ -1,0 +1,11 @@
+.burger__wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 25px;
+  justify-items: center;
+  align-items: flex-start;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

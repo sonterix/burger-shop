@@ -1,0 +1,61 @@
+@import 'assets/scss/_variables';
+
+.control__wrapper {
+	display: flex;
+	justify-content: space-between;
+  align-items: center;
+  padding: 15px 5px;
+  min-width: 65%;
+
+  > * {
+    flex: 1;
+  }
+
+  > p {
+    margin: 0;
+    margin-right: 10px;
+    color: $color-white;
+    font-size: $font-md;
+    font-weight: 500;
+  }
+  
+	.control__btn {
+		display: block;
+    margin: 0;
+    margin-right: 10px;
+    padding: 10px 5px;
+    min-width: 70px;
+    font-size: $font-sm + 2;
+
+    &.control__btnLess {
+      color: $color-dark-grey;
+      background-color: $color-white;
+  
+      &:hover {
+        color: $color-white;
+        background-color: $color-dark-grey;
+      }
+
+      &:disabled:hover {
+        color: $color-dark-grey;
+        background-color: $color-white;
+        border-color: $color-white;
+      }
+    }
+
+    &.control__btnMore {
+      color: $color-dark-grey;
+      background-color: $color-yellow;
+      border-color: $color-yellow;
+
+      &:hover {
+        color: $color-yellow;
+        background-color: $color-dark-grey;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+	}
+}

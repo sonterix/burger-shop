@@ -1,0 +1,115 @@
+@import "assets/scss/_variables";
+
+.bread__top {
+  position: relative;
+  margin: 8px auto;
+  width: 90%;
+  height: 90px;
+  background: $gradient-bread;
+  border-radius: 50% 50% 0 0;
+  box-shadow: inset -15px 0 $color-bread;
+}
+
+.bread__bottom {
+  margin: 8px auto;
+  width: 90%;
+  height: 55px;
+  background: $gradient-bread;
+  border-radius: 0 0 30px 30px;
+  box-shadow: inset -15px 0 $color-bread;
+}
+
+.seeds__1 {
+  position: absolute;
+  left: 90px;
+  top: 60px;
+  width: 25px;
+  height: 10px;
+  background-color: $color-white;
+  border-radius: 40%;
+  transform: rotate(-20deg);
+  box-shadow: inset -2px -3px $color-seed-shadow;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 65px;
+    width: 100%;
+    height: 100%;
+    background-color: $color-white;
+    border-radius: 40%;
+    transform: rotate(60deg);
+    box-shadow: inset -1px -3px $color-seed-shadow;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: -60px;
+    width: 100%;
+    height: 100%;
+    background-color: $color-white;
+    border-radius: 40%;
+    transform: rotate(60deg);
+    box-shadow: inset -1px 2px $color-seed-shadow;
+  }
+}
+
+.seeds__2 {
+  position: absolute;
+  top: 55px;
+  right: 90px;
+  width: 25px;
+  height: 10px;
+  background-color: $color-white;
+  border-radius: 40%;
+  transform: rotate(10deg);
+  box-shadow: inset -3px 0 $color-seed-shadow;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -60px;
+    width: 100%;
+    height: 100%;
+    background-color: $color-white;
+    border-radius: 40%;
+    transform: rotate(90deg);
+    box-shadow: inset 1px 3px $color-seed-shadow;
+  }
+}
+
+.meat {
+  margin: 8px auto;
+  width: 90%;
+  height: 30px;
+  background: $gradient-meat;
+  border-radius: 15px;
+}
+
+.cheese {
+  margin: 8px auto;
+  width: 100%;
+  height: 15px;
+  background: $gradient-cheese;
+  border-radius: 20px;
+}
+
+.salad {
+  margin: 8px auto;
+  width: 95%;
+  height: 20px;
+  background: $gradient-salad;
+  border-radius: 20px;
+}
+
+.bacon {
+  margin: 8px auto;
+  width: 85%;
+  height: 10px;
+  background: $gradient-bacon;
+  border-radius: 2px;
+}

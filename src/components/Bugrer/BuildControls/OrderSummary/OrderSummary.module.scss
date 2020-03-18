@@ -1,0 +1,48 @@
+@import 'assets/scss/_variables';
+
+.orderSummary__wrapper {
+  text-align: center;
+
+  > h3 {
+    margin: 0;
+    margin-bottom: 15px;
+    font-size: $font-lg * 1.5;
+  }
+
+  > p {
+    margin: 0;
+    margin-bottom: 15px;
+    font-size: $font-sm + 2;
+
+    &.orderSummary__total {
+      margin-bottom: 0;
+      font-size: $font-lg;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: $color-green;
+    }
+  }
+
+  > ul {
+    padding: 0;
+    list-style: none;
+
+    > li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      font-size: $font-md;
+      font-weight: 500;
+
+      > span {
+        font-weight: 600;
+        color: $color-yellow;
+      }
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
