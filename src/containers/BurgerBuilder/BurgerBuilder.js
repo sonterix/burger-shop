@@ -2,132 +2,135 @@ import React, { Component } from 'react'
 import Modal from 'components/UI/Modal/Modal'
 import OrderSummary from 'components/Bugrer/BuildControls/OrderSummary/OrderSummary'
 import Burger from 'components/Bugrer/Burger'
+import { DATABASE_URL, INGREDIENTS_URL, ORDERS_URL } from 'constants.js'
+import withError from 'hoc/withModalAndLoading'
 
-export default class BurgerBuilder extends Component {
+class BurgerBuilder extends Component {
   state = {
-    ingredients: {
-      cheese: {
-          label: 'Cheese',
-          type: 'cheese',
-          count: 0,
-          price: 0.6
-        },
-        meat: {
-          label: 'Meat',
-          type: 'meat',
-          count: 0,
-          price: 1.4
-        },
-        bacon: {
-          label: 'Bacon',
-          type: 'bacon',
-          count: 0,
-          price: 0.8
-        },
-        salad: {
-          label: 'Salad',
-          type: 'salad',
-          count: 0,
-          price: 0.3
-        }
-    },
+    ingredients: {},
     ingredientsOrder: [],
-    totalDefaultPrice: 4,
     totalPrice: 4,
-    checkout: false,
-    checkoutPopup: false
+    checkoutModal: false,
   }
 
-  convertTotalPriceHandler = total => {
-    return `$${ total.toFixed(2) }`
-  }
+  handleConvertTotalPrice = total => `$${ total.toFixed(2) }`
 
-  addIngredientHandler = type => {
-    const currentIngredient = this.state.ingredients[type]
-    const newCount = currentIngredient.count + 1
-    const updatedIngredients = {...this.state.ingredients}
-    updatedIngredients[type].count = newCount
-
-    const updatedIngredientsOrder = [...this.state.ingredientsOrder]
-    updatedIngredientsOrder.push(updatedIngredients[type].type)
-
-    this.updateTotalPriceHandler('add', updatedIngredients, updatedIngredientsOrder, currentIngredient)
-  }
-
-  removeIngredientHandler = type => {
-    const currentIngredient = this.state.ingredients[type]
-
-    if (currentIngredient.count > 0) {
-      const newCount = currentIngredient.count - 1
-      const updatedIngredients = {...this.state.ingredients}
-      updatedIngredients[type].count = newCount
-
-      const updatedIngredientsOrder = [...this.state.ingredientsOrder]
-      updatedIngredientsOrder.splice(updatedIngredientsOrder.lastIndexOf(updatedIngredients[type].type), 1)
-  
-      this.updateTotalPriceHandler('remove', updatedIngredients, updatedIngredientsOrder, currentIngredient)
+  handleGetIngredients = async () => {
+    const { hideLoader, showModal } = this.props
+    
+    try {
+      const ingredientsResponse = await fetch(`${ DATABASE_URL }${ INGREDIENTS_URL }`)
+      const ingredientsData = await ingredientsResponse.json()
+      
+      this.setState({
+        ingredients: ingredientsData
+      }, () => {
+        hideLoader()
+      })
+    } catch (error) {
+      showModal('Error with fetching data from database')
     }
+  } 
+
+  handleAddIngredient = type => {
+    const { ingredients, ingredientsOrder, totalPrice } = this.state
+
+    const updatedIngredients = { ...ingredients }
+    updatedIngredients[type].count++
+
+    this.setState({
+      ingredients: updatedIngredients,
+      ingredientsOrder: [ ...ingredientsOrder, type],
+      totalPrice: totalPrice + updatedIngredients[type].price
+    })
   }
 
-  updateTotalPriceHandler = (action, updatedIngredients, updatedIngredientsOrder, currentIngredient) => {
-    let newTotalPrice = this.state.totalPrice
+  handleRemoveIngredient = type => {
+    const { ingredients, ingredientsOrder, totalPrice } = this.state
 
-    if (action === 'add') {
-      newTotalPrice += currentIngredient.price
-    } else if (action === 'remove' && newTotalPrice >= this.state.totalDefaultPrice) {
-      newTotalPrice -= currentIngredient.price
+    const updatedIngredients = { ...ingredients }
+    if (updatedIngredients[type].count > 0) {
+      updatedIngredients[type].count--
     }
+
+    const updatedIngredientsOrder = [ ...ingredientsOrder ]
+    updatedIngredientsOrder.splice(updatedIngredientsOrder.lastIndexOf(type), 1)
 
     this.setState({
       ingredients: updatedIngredients,
       ingredientsOrder: updatedIngredientsOrder,
-      totalPrice: newTotalPrice
+      totalPrice: totalPrice - updatedIngredients[type].price
     })
-
-    this.updateCheckoutHandler(updatedIngredients)
   }
 
-  updateCheckoutHandler = ingredients => {
-    let totalIngredients = 0
-
-    for (let ingredient in ingredients) {
-      totalIngredients += ingredients[ingredient].count
-    }
+  handleOrderNow = () => {
+    const { showModal } = this.props
 
     this.setState({
-      checkout: totalIngredients > 0
+      checkoutModal: false
+    }, async () => {
+      try {
+        const response = await fetch(`${ DATABASE_URL }${ ORDERS_URL }`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            ingredients: this.state.ingredients,
+            ingredientsOrder: this.state.ingredientsOrder,
+            totalPrice: this.handleConvertTotalPrice(this.state.totalPrice),
+            deliveryMethod: 'ASAP - $100',
+            customer: {
+              name: 'Nick Bukovskiy',
+              email: 'sontTest@email.com',
+              address: {
+                street: 'Some street 1',
+                country: 'Australia',
+                city: 'Melbourne',
+                zip: '32901'
+              }
+            }
+          })
+        })
+        const responseData = await response.json()
+        console.log(responseData)
+        
+        showModal('Success!')
+      } catch (error) {
+        showModal('Error with the order!')
+      }
     })
   }
 
-  toggleCheckoutPopupHandler = () => {
-    console.log(1)
-    this.setState((prevState, props) => {
-      return {checkoutPopup: !prevState.checkoutPopup}
-    })
+  componentDidMount () {
+    this.handleGetIngredients()
   }
 
-  render() {
-    const disabledButtons = {...this.state.ingredients}
-    for (let button in disabledButtons) {
-      disabledButtons[button] = disabledButtons[button].count === 0
-    }
+  render () {
+    const { ingredients, ingredientsOrder, totalPrice, checkoutModal } = this.state
 
     return (
       <>
-        <Modal showPopup={this.state.checkoutPopup} hidePopup={this.toggleCheckoutPopupHandler}>
-          <OrderSummary ingredients={this.state.ingredients} totalPrice={this.convertTotalPriceHandler(this.state.totalPrice)} />
+        <Modal modal={ checkoutModal } hideModal={ () => this.setState({ checkoutModal: false }) }>
+          <OrderSummary
+            ingredients={ ingredients }
+            totalPrice={ this.handleConvertTotalPrice(totalPrice) }
+            togglePopup={ () => this.setState({ checkoutModal: false }) }
+            orderNow={ this.handleOrderNow }
+          />
         </Modal>
         <Burger
-          ingredientsOrder={this.state.ingredientsOrder}
-          ingredients={this.state.ingredients}
-          addIngredient={this.addIngredientHandler}
-          removeIngredient={this.removeIngredientHandler}
-          disabledButtons={disabledButtons}
-          totalPrice={this.convertTotalPriceHandler(this.state.totalPrice)}
-          checkout={this.state.checkout}
-          showPopup={this.toggleCheckoutPopupHandler}
+          ingredientsOrder={ ingredientsOrder }
+          ingredients={ ingredients }
+          addIngredient={ this.handleAddIngredient }
+          removeIngredient={ this.handleRemoveIngredient }
+          totalPrice={ this.handleConvertTotalPrice(totalPrice) }
+          checkout={ ingredientsOrder.length > 0 }
+          showModal={ () => this.setState({ checkoutModal: true }) }
         />
       </>
     )
   }
 }
+
+export default withError(BurgerBuilder)

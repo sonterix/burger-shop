@@ -4,20 +4,17 @@ import BurgerItem from 'components/Bugrer/BurgerItem/BurgerItem'
 import BuildControls from 'components/Bugrer/BuildControls/BuildControls'
 import styles from './Burger.module.scss'
 
-const Burger = props => {
-  const {ingredients, ingredientsOrder, addIngredient, removeIngredient, disabledButtons, totalPrice, checkout, showPopup} = props
-
+const Burger = ({ ingredients, ingredientsOrder, addIngredient, removeIngredient, totalPrice, checkout, showModal }) => {
   return (
-    <div className={`wrapper ${ styles.burger__wrapper }`}>
-      <BurgerItem ingredients={ingredientsOrder} />
+    <div className={ `wrapper ${ styles.burger__wrapper }` }>
+      <BurgerItem ingredients={ ingredientsOrder } />
       <BuildControls
-        ingredients={ingredients}
-        addIngredient={addIngredient}
-        removeIngredient={removeIngredient}
-        disabledButtons={disabledButtons}
-        totalPrice={totalPrice}
-        checkout={checkout}
-        showPopup={showPopup}
+        ingredients={ ingredients }
+        addIngredient={ addIngredient }
+        removeIngredient={ removeIngredient }
+        totalPrice={ totalPrice }
+        checkout={ checkout }
+        showModal={ showModal }
       />      
     </div>
   )
@@ -28,10 +25,9 @@ Burger.propTypes = {
   ingredientsOrder: PropTypes.array,
   addIngredient: PropTypes.func,
   removeIngredient: PropTypes.func,
-  disabledButtons: PropTypes.object,
   totalPrice: PropTypes.string,
   checkout: PropTypes.bool,
-  showPopup: PropTypes.func
+  togglePopup: PropTypes.func
 }
 
 export default Burger

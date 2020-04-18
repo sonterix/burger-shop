@@ -3,7 +3,7 @@ import styles from './Footer.module.scss'
 
 const Footer = props => {
   return (
-    <footer className={styles.footer__wrapper}>
+    <footer className={ styles.footer__wrapper }>
       
     </footer>
   )

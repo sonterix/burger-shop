@@ -1,23 +1,30 @@
 import React from 'react'
+import { createPortal } from 'react-dom' 
 import PropTypes from 'prop-types'
 import styles from './Modal.module.scss'
 
-const Modal = props => {
-  const {showPopup, hidePopup} = props
-
-  return (
-    <div className={`${ styles.modal__wrapper } ${ showPopup ? styles.active : '' }`}>
-      <div className={styles.modal__overlay} onClick={hidePopup}></div>
-      <div className={styles.modal__content}>
-        {props.children}
+const Modal = ({ modal, hideModal, children }) => createPortal(
+  <>
+    { modal
+      && <div className={ styles.modal__wrapper }>
+        <div className={ styles.modal__overlay } onClick={ hideModal }></div>
+        <div className={ styles.modal__content }>
+          { children }
+        </div>
       </div>
-    </div>
-  )
-}
+    }
+  </>,
+  document.body
+)
 
 Modal.propTypes = {
-  showPopup: PropTypes.bool,
-  hidePopup: PropTypes.func
+  modal: PropTypes.bool,
+  hideModal: PropTypes.func
 }
 
-export default React.memo(Modal)
+Modal.defaultProps = {
+  modal: false,
+  hideModal: () => {}
+}
+
+export default Modal

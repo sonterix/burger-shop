@@ -1,7 +1,8 @@
 @import 'assets/scss/_variables';
 
 .modal__wrapper {
-  pointer-events: none;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
 
   .modal__overlay {
     position: fixed;
@@ -11,8 +12,7 @@
     height: 100%;
     background-color: $color-black;
     transition: opacity $trans;
-    opacity: 0;
-    pointer-events: inherit;
+    opacity: 0.5;
     cursor: pointer;
     z-index: 9990;
   }
@@ -25,20 +25,21 @@
     padding: 25px;
     background-color: $color-white;
     transition: opacity $trans;
-    opacity: 0;
-    pointer-events: inherit;
+    opacity: 1;
     z-index: 9991;
+
+    @media (max-width: $md) {
+      max-width: 80%;
+      width: 100%;
+    }
   }
 }
 
-.modal__wrapper.active {
-  pointer-events: auto;
-
-  .modal__overlay {
-    opacity: 0.5;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-
-  .modal__content {
+  100% {
     opacity: 1;
   }
 }

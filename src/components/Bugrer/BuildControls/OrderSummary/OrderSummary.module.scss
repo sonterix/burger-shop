@@ -15,7 +15,6 @@
     font-size: $font-sm + 2;
 
     &.orderSummary__total {
-      margin-bottom: 0;
       font-size: $font-lg;
       font-weight: 600;
       letter-spacing: 1px;
@@ -24,6 +23,7 @@
   }
 
   > ul {
+    margin-bottom: 15px;
     padding: 0;
     list-style: none;
 
@@ -42,6 +42,26 @@
 
       &:last-child {
         padding-bottom: 0;
+      }
+    }
+  }
+  
+  .orderSummary__actions {
+    padding-top: 10px;
+
+    > button {
+      margin: 0 10px;
+      padding: 8px 10px;
+      font-size: $font-md;
+  
+      &.orderSummary__btnOrder {
+        background-color: $color-green;
+        border-color: $color-green;
+
+        &:hover {
+          color: $color-green;
+          background-color: $color-white;
+        }
       }
     }
   }

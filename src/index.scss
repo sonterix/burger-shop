@@ -31,13 +31,14 @@ body {
       letter-spacing: 0.5px;
       color: $color-white;
       background-color: $color-dark-grey;
-      border: 2px solid $color-white;
+      border: 2px solid $color-dark-grey;
       border-radius: 3px;
       transition: all $trans;
 
       &:hover {
         color: $color-dark-grey;
         background-color: $color-white;
+        border-color: $color-dark-grey;
       }
 
       &:disabled {
@@ -47,7 +48,25 @@ body {
         &:hover {
           color: $color-white;
           background-color: $color-dark-grey;
-          border-color: $color-white;
+          border-color: $color-dark-grey;
+        }
+      }
+
+      &.invert {
+        color: $color-dark-grey;
+        background-color: $color-white;
+        border-color: $color-dark-grey;
+
+        &:hover {
+          color: $color-white;
+          background-color: $color-dark-grey;
+          border-color: $color-dark-grey;
+        }
+
+        &:disabled:hover {
+          color: $color-dark-grey;
+          background-color: $color-white;
+          border-color: $color-dark-grey;
         }
       }
     }

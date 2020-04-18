@@ -1,3 +1,5 @@
+@import 'assets/scss/_variables';
+
 .burger__wrapper {
   display: grid;
   grid-template-columns: 1fr;
@@ -5,7 +7,7 @@
   justify-items: center;
   align-items: flex-start;
 
-  @media (min-width: 768px) {
+  @media (min-width: $md) {
     grid-template-columns: repeat(2, 1fr);
   }
 }
