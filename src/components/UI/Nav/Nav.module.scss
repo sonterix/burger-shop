@@ -20,11 +20,11 @@
         color: $color-white;
         transition: color $trans;
 
-        &.active {
+        &:global(.active) {
           color: $color-yellow;
         }
 
-        &:hover:not(.active) {
+        &:hover:not(:global(.active)) {
           color: $color-white - 80;
         }
       }

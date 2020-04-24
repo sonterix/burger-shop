@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Logo from 'components/UI/Logo/Logo'
-import NavItem from '../NavItem/NavItem'
+import { NavLink } from 'react-router-dom'
 import styles from './MobNav.module.scss'
 
 const MobNav = ({ moileNav, navItems, toggleMobileNav }) => (
@@ -13,14 +13,12 @@ const MobNav = ({ moileNav, navItems, toggleMobileNav }) => (
       </div>
       <nav className={ styles.navMob__nav }>
         <ul>
-          { navItems.map(navItem =>
-            <NavItem 
-              key={ `${ navItem.text }_${ navItem.link }` }
-              link={ navItem.link } 
-              text={ navItem.text } 
-              className={ navItem.active ? `${ styles.active } ${ styles.navMob__item }` : styles.navMob__item } 
-            />
-          )}
+          { navItems.map(navItem => (
+              <li key={ `${ navItem.text }_${ navItem.link }` } >
+                <NavLink to={ navItem.link } className={ styles.navMob__item } exact>{ navItem.text }</NavLink>
+              </li>
+            ))
+          }
         </ul>
       </nav>
     </div>

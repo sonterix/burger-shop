@@ -1,13 +1,24 @@
-import React, { Component } from 'react'
-import Layout from './components/Layout/Layout'
-import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder'
+import React, { lazy, Suspense } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Layout from 'components/Layout/Layout'
+import Loader from 'components/UI/Loader/Loader'
 
-export default class App extends Component {
-  render() {
-    return (
+const App = () => {
+  const BurgerBuilder = lazy(() => import('containers/BurgerBuilder/BurgerBuilder'))
+  const Checkout = lazy(() => import('containers/Checkout/Checkout'))
+
+  return (
+    <BrowserRouter>
       <Layout>
-        <BurgerBuilder />
+        <Suspense fallback={ <Loader dark={ true } /> }>
+          <Switch>
+            <Route path="/" exact component={ BurgerBuilder } />
+            <Route path="/checkout" exact component={ Checkout } />
+          </Switch>
+        </Suspense>
       </Layout>
-    )
-  }
+    </BrowserRouter>
+  )
 }
+
+export default App
