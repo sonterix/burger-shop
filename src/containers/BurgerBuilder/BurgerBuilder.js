@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Modal from 'components/UI/Modal/Modal'
 import OrderSummary from 'components/Bugrer/BuildControls/OrderSummary/OrderSummary'
 import Burger from 'components/Bugrer/Burger'
-import { DATABASE_URL, INGREDIENTS_URL, ORDERS_URL } from 'constants.js'
+import { DATABASE_URL, INGREDIENTS_URL } from 'constants.js'
 import withError from 'hoc/withModalAndLoading'
 
 class BurgerBuilder extends Component {
@@ -63,45 +63,6 @@ class BurgerBuilder extends Component {
     })
   }
 
-  handleOrderNow = () => {
-    const { showModal } = this.props
-
-    this.setState({
-      checkoutModal: false
-    }, async () => {
-      try {
-        const response = await fetch(`${ DATABASE_URL }${ ORDERS_URL }`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            ingredients: this.state.ingredients,
-            ingredientsOrder: this.state.ingredientsOrder,
-            totalPrice: this.handleConvertTotalPrice(this.state.totalPrice),
-            deliveryMethod: 'ASAP - $100',
-            customer: {
-              name: 'Nick Bukovskiy',
-              email: 'sontTest@email.com',
-              address: {
-                street: 'Some street 1',
-                country: 'Australia',
-                city: 'Melbourne',
-                zip: '32901'
-              }
-            }
-          })
-        })
-        const responseData = await response.json()
-        console.log(responseData)
-        
-        showModal('Success!')
-      } catch (error) {
-        showModal('Error with the order!')
-      }
-    })
-  }
-
   componentDidMount () {
     this.handleGetIngredients()
   }
@@ -114,9 +75,9 @@ class BurgerBuilder extends Component {
         <Modal modal={ checkoutModal } hideModal={ () => this.setState({ checkoutModal: false }) }>
           <OrderSummary
             ingredients={ ingredients }
+            ingredientsOrder={ ingredientsOrder }
             totalPrice={ this.handleConvertTotalPrice(totalPrice) }
             togglePopup={ () => this.setState({ checkoutModal: false }) }
-            orderNow={ this.handleOrderNow }
           />
         </Modal>
         <Burger

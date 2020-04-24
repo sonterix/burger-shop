@@ -13,7 +13,7 @@ const App = () => {
         <Suspense fallback={ <Loader dark={ true } /> }>
           <Switch>
             <Route path="/" exact component={ BurgerBuilder } />
-            <Route path="/checkout" exact component={ Checkout } />
+            <Route path="/checkout" component={ Checkout } />
           </Switch>
         </Suspense>
       </Layout>

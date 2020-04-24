@@ -49,14 +49,19 @@
   .orderSummary__actions {
     padding-top: 10px;
 
-    > button {
+    > button,
+    > a {
       margin: 0 10px;
       padding: 8px 10px;
       font-size: $font-md;
+      font-weight: 600;
   
       &.orderSummary__btnOrder {
+        color: $color-white;
         background-color: $color-green;
-        border-color: $color-green;
+        border: 2px solid $color-green;
+        border-radius: 3px;
+        transition: all $trans;
 
         &:hover {
           color: $color-green;
