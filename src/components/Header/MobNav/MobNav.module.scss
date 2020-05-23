@@ -1,0 +1,97 @@
+@import 'assets/scss/_variables';
+
+.MobNavWrapper {
+  pointer-events: none;
+
+  .MobNavOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color-black;
+    transition: opacity $trans;
+    opacity: 0;
+    pointer-events: inherit;
+    cursor: pointer;
+    z-index: 9990;
+  }
+
+  .MobNavMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px 10px;
+    max-width: 80%;
+    width: 300px;
+    height: 100%;
+    background-color: $color-dark-grey - 10;
+    transform: translateX(-100%);
+    transition: transform $trans;
+    pointer-events: inherit;
+    z-index: 9991;
+
+    .MobNavLogo {
+      margin-bottom: 35px;
+      height: 50px;
+      text-align: center;
+    }
+
+    .MobNavNav {
+
+      > ul {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        > li {
+          display: block;
+          text-align: center;
+        }
+      }
+
+      .MobNavItem {
+        display: inherit;
+        margin-bottom: 10px;
+        padding: 5px;
+        font-size: $font-lg;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $color-white;
+
+        &:global(.active) {
+          position: relative;
+  
+          &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0 auto;
+            width: 70%;
+            height: 2px;
+            background-color: $color-white;
+            border-radius: 3px;
+          }
+        }
+      }
+    }
+  }
+
+  &.active {
+    pointer-events: auto;
+  
+    .MobNavOverlay {
+      opacity: 0.5;
+    }
+  
+    .MobNavMenu {
+      transform: translateX(0);
+    }
+  }
+}

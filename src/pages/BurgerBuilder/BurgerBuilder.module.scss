@@ -1,0 +1,13 @@
+@import '../../assets/scss/variables';
+
+.BurgerBuilderWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 25px;
+  justify-items: center;
+  align-items: flex-start;
+
+  @media (min-width: $md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

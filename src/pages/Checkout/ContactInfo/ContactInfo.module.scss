@@ -1,0 +1,56 @@
+@import '../../../assets/scss/variables';
+
+.contact_info_form {
+  margin: 0 auto;
+  padding: 25px 0;
+  max-width: 450px;
+  
+  > input,
+  > select {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    width: 100%;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: $color-white;
+    border: 2px solid $color-white;
+    border-radius: 3px;
+    background-color: transparent;
+    transition: all $trans;
+
+    &:focus {
+      color: $color-dark-grey;
+      background-color: $color-white;
+    }
+  }
+
+  > h2 {
+    padding: 10px 0;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: $color-white;
+  }
+
+  > button:global(.btn) {
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+    max-width: 180px;
+    width: 100%;
+    border-radius: 5px;
+    color: $color-white;
+    background-color: $color-green;
+
+    &:hover {
+      color: $color-green;
+      border-color: $color-green;
+      background-color: $color-dark-grey;
+    }
+  }
+
+  ::placeholder {
+    color: rgba($color-white, 0.5);
+  }
+}

@@ -1,0 +1,10 @@
+.LogoWrapper {
+  display: inline-block;
+  height: 100%;
+  text-align: center;
+
+  > img {
+    height: 100%;
+    pointer-events: none;
+  }
+}

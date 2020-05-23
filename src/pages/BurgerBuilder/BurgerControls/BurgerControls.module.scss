@@ -1,0 +1,58 @@
+@import 'assets/scss/_variables';
+
+.BurgerControlsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 25px 15px;
+  max-width: 450px;
+  width: 100%;
+  border: 2px solid $color-white;
+  border-radius: 3px;
+
+  .BurgerControlsTotal {
+    margin: 0;
+    margin-bottom: 15px;
+    font-size: $font-lg;
+    font-weight: 600;
+    color: $color-yellow;
+    
+    > span {
+      padding-left: 5px;
+      font-weight: bold;
+      color: $color-white;
+    }
+  }
+
+  .BurgerControlsEmpty {
+    font-size: 18px;
+    font-weight: bold;
+    color: $color-white;
+  }
+
+  .OrderBtn {
+    margin: 0;
+    margin-top: 15px;
+    max-width: 150px;
+    width: 100%;
+    font-size: $font-sm;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $color-green;
+    background-color: $color-dark-grey;
+    border-color: $color-green;
+
+    &:hover {
+      color: $color-dark-grey;
+      background-color: $color-green;
+      border-color: $color-green;
+    }
+
+    &:disabled:hover {
+      color: $color-green;
+      background-color: $color-dark-grey;
+      border-color: $color-green;
+    }
+  }
+}
