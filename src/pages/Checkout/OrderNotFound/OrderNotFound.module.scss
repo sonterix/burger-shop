@@ -1,0 +1,17 @@
+@import '../../../assets/scss/variables';
+
+.OrderNotFound {
+  font-size: 24px;
+  text-align: center;
+  letter-spacing: 1px;
+  color: $color-white;
+
+  > a {
+    text-decoration: underline;
+    color: $color-white;
+
+    &:hover {
+      color: $color-yellow;
+    }
+  }
+}

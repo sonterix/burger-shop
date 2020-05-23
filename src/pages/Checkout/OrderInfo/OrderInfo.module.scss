@@ -1,0 +1,70 @@
+@import '../../../assets/scss/variables';
+
+.OrderWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: $color-white;
+  
+  .OrderHeaders {
+    margin-bottom: 25px;
+    text-align: center;
+
+    > h3 {
+      margin-bottom: 15px;
+      font-size: $font-lg * 3;
+      color: $color-green;
+    }
+
+    > p {
+      font-size: $font-lg;
+      opacity: 0.8;
+    }
+  }
+  
+  .Order {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    max-width: 250px;
+    width: 100%;
+    list-style: none;
+
+    > li {
+      display: flex;
+      justify-content: space-between;
+
+      > span {
+        padding: 5px 10px;
+        font-size: $font-lg + 4;
+        cursor: default;
+
+        &:last-child {
+          color: $color-yellow;
+        }
+      }
+    }
+  }
+  
+  .OrderTotal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 15px;
+    max-width: 450px;
+    width: 100%;
+    border-top: 2px solid $color-white;
+
+    > p {
+      font-size: $font-lg + 8;
+      letter-spacing: 1px;
+
+      > span {
+        font-weight: bold;
+      }
+    }
+  }
+}

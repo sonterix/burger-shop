@@ -18,10 +18,27 @@ body {
 
   a {
     text-decoration: none;
+    transition: all $trans;
+
+    &.continue {
+      display: inline-block;
+      margin: 5px;
+      padding: 15px 35px;
+      font-size: $font-lg;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: $color-white;
+      background-color: $color-green;
+
+      &:hover {
+        background-color: darken($color-green, 10);
+      }
+    }
   }
 
   button {
     cursor: pointer;
+    transition: all $trans;
 
     &.btn {
       display: inline-block;
@@ -35,7 +52,6 @@ body {
       background-color: $color-dark-grey;
       border: 2px solid $color-dark-grey;
       border-radius: 3px;
-      transition: all $trans;
 
       &:hover {
         color: $color-dark-grey;

@@ -4,7 +4,7 @@ import App from 'components/App/AppContainer';
 import Loader from 'components/Loader/Loader'
 
 const BurgerBuilder = lazy(() => import('pages/BurgerBuilder/BurgerBuilder'))
-const Checkout = lazy(() => import('pages/Checkout/Checkout'))
+const Checkout = lazy(() => import('pages/Checkout/CheckoutContainder'))
 const Orders = lazy(() => import('pages/Orders/Orders'))
 
 const Router = () => (
