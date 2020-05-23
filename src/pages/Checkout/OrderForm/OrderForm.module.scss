@@ -1,0 +1,45 @@
+@import '../../../assets/scss/variables';
+
+.OrderFormWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+
+  > h3 {
+    margin-bottom: 15px;
+    font-size: $font-lg * 3;
+    color: $color-green;
+  }
+
+  .OrderForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 450px;
+    width: 100%;
+
+    > input,
+    > select {
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      width: inherit;
+      font-size: $font-lg;
+      text-align: center;
+      text-align-last: center;
+      border: 3px solid $color-white;
+      border-radius: 2px;
+      transition: border-color $trans;
+
+      &:global(.right) {
+        border-color: $color-green;
+      }
+
+      &:global(.wrong) {
+        border-color: $color-red;
+      }
+    }
+  }
+}

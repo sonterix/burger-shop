@@ -4,7 +4,7 @@ import styles from './OrderNotFound.module.scss'
 
 const OrderNotFound = () => (
   <div className={ styles.OrderNotFound }>
-    Please, <Link to="/">build your Burger</Link>
+    Please, <Link to="/">build your Burger</Link> to continue
   </div>
 )
 

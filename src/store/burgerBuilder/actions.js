@@ -16,7 +16,7 @@ const removeIngredientAction = ingredient => ({
   payload: ingredient
 })
 
-const resetCurrentOrder = () => ({
+const resetCurrentOrderAction = () => ({
   type: RESET_CURRENT_ORDER
 })
 
@@ -41,5 +41,5 @@ const getIngredientsAction = () => async dispatch => {
 
 export {
   GET_INGREDIENTS, ADD_INGREDIENT, REMOVE_INGREDIENT, RESET_CURRENT_ORDER,
-  getIngredientsAction, addIngredientAction, removeIngredientAction, resetCurrentOrder
+  getIngredientsAction, addIngredientAction, removeIngredientAction, resetCurrentOrderAction
 }

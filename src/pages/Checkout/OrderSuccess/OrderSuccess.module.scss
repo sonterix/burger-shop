@@ -1,0 +1,21 @@
+@import '../../../assets/scss/variables';
+
+.OrderSuccess {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+
+  > h3 {
+    margin-bottom: 15px;
+    font-size: $font-lg * 3;
+    color: $color-green;
+  }
+
+  > p {
+    font-size: $font-lg;
+    color: $color-white;
+    opacity: 0.8;
+  }
+}

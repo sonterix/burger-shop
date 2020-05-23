@@ -1,17 +1,29 @@
 @import '../../../assets/scss/variables';
 
 .OrderNotFound {
-  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  font-size: $font-lg;
+  font-weight: bold;
   text-align: center;
   letter-spacing: 1px;
   color: $color-white;
 
   > a {
+    padding: 5px 10px;
     text-decoration: underline;
-    color: $color-white;
+    color: $color-yellow;
 
     &:hover {
-      color: $color-yellow;
+      color: $color-green;
     }
+  }
+
+  @media (min-width: $md) {
+    flex-direction: row;
+    font-size: $font-lg * 1.8;
   }
 }

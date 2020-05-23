@@ -1,20 +1,20 @@
 import React, { lazy } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route } from 'react-router'
-import OrderNotFound from './OrderNotFound/OrderNotFound'
-import styles from './Checkout.module.scss'
 
 const Checkout = ({ ingredientsOrder }) => {
+  const OrderNotFound = lazy(() => import('./OrderNotFound/OrderNotFound'))
   const OrderInfo = lazy(() => import('./OrderInfo/OrderInfoContainer'))
+  const OrderForm = lazy(() => import('./OrderForm/OrderFormContainer'))
+  const OrderSuccess = lazy(() => import('./OrderSuccess/OrderSuccess'))
 
   return (
     <div className="wrapper">
-      { ingredientsOrder.length 
-        ? <Switch>
-            <Route path="/" component={ OrderInfo } />
-          </Switch>
-        : <OrderNotFound />
-      }
+      <Switch>
+        <Route path="/checkout" component={ ingredientsOrder.length ? OrderInfo : OrderNotFound } exact />
+        <Route path="/checkout/OrderForm" component={ ingredientsOrder.length ? OrderForm : OrderNotFound } />
+        <Route path="/checkout/OrderSuccess" component={ OrderSuccess } />
+      </Switch>
     </div>
   )
 }

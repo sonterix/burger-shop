@@ -19,21 +19,6 @@ body {
   a {
     text-decoration: none;
     transition: all $trans;
-
-    &.continue {
-      display: inline-block;
-      margin: 5px;
-      padding: 15px 35px;
-      font-size: $font-lg;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: $color-white;
-      background-color: $color-green;
-
-      &:hover {
-        background-color: darken($color-green, 10);
-      }
-    }
   }
 
   button {
@@ -100,5 +85,33 @@ body {
     margin: 0 auto;
     width: inherit;
     height: inherit;
+  }
+
+  .continue {
+    display: inline-block;
+    margin: 5px;
+    padding: 15px 35px;
+    font-size: $font-lg;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $color-white;
+    background-color: $color-green;
+    border: none;
+    transition: background-color $trans;
+
+    &:disabled {
+      opacity: 0.8;
+      background-color: darken($color-green, 5);
+      cursor: not-allowed;
+
+      &:hover {
+        opacity: 0.8;
+        background-color: darken($color-green, 5);
+      }
+    }
+
+    &:hover {
+      background-color: darken($color-green, 10);
+    }
   }
 }
