@@ -12,8 +12,8 @@ const Checkout = ({ ingredientsOrder }) => {
     <div className="wrapper">
       <Switch>
         <Route path="/checkout" component={ ingredientsOrder.length ? OrderInfo : OrderNotFound } exact />
-        <Route path="/checkout/OrderForm" component={ ingredientsOrder.length ? OrderForm : OrderNotFound } />
-        <Route path="/checkout/OrderSuccess" component={ OrderSuccess } />
+        <Route path="/checkout/order-form" component={ ingredientsOrder.length ? OrderForm : OrderNotFound } />
+        <Route path="/checkout/order-success" component={ OrderSuccess } />
       </Switch>
     </div>
   )

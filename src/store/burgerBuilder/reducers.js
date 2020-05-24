@@ -1,6 +1,7 @@
 import { GET_INGREDIENTS, ADD_INGREDIENT, REMOVE_INGREDIENT, RESET_CURRENT_ORDER } from "./actions"
 
 const initialState = {
+  initialIngredients: {},
   ingredients: {},
   ingredientsOrder: [],
   totalPrice: '4.00'
@@ -9,7 +10,7 @@ const initialState = {
 const burgerBuilderReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_INGREDIENTS:
-      return { ...state, ingredients: payload }
+      return { ...state, initialIngredients: payload, ingredients: payload }
 
     case ADD_INGREDIENT:
       const addIngItem = { ...state.ingredients[payload] }
@@ -44,6 +45,7 @@ const burgerBuilderReducer = (state = initialState, { type, payload }) => {
     case RESET_CURRENT_ORDER:
       return {
         ...state,
+        ingredients: state.initialIngredients,
         ingredientsOrder: initialState.ingredientsOrder,
         totalPrice: initialState.totalPrice
       }

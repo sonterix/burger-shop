@@ -7,7 +7,14 @@ import { lengthError } from 'utilities/validator'
 import { placeOrder } from 'api/apiCalls'
 import styles from './OrderForm.module.scss'
 
-const OrderForm = ({ ingredients, totalPrice, setAlert, resetCurrentOrder }) => {
+const OrderForm = ({
+  ingredients,
+  totalPrice,
+  setAlert,
+  resetCurrentOrder,
+  loaderOn,
+  loaderOff
+}) => {
   const { push } = useHistory()
 
   const initialFormData = {
@@ -39,6 +46,7 @@ const OrderForm = ({ ingredients, totalPrice, setAlert, resetCurrentOrder }) => 
   const handleSubmitForm = async event => {
     event.preventDefault()
     if (formError) return
+    loaderOn()
 
     const data = {
       ingredients,
@@ -49,8 +57,10 @@ const OrderForm = ({ ingredients, totalPrice, setAlert, resetCurrentOrder }) => 
     const orderStatus = await placeOrder(data)
     if (orderStatus) {
       resetCurrentOrder()
-      push('/checkout/OrderSuccess')
+      loaderOff()
+      push('/checkout/order-success')
     } else {
+      loaderOff()
       setAlert('Error with placing the order. Please, try again')
     }
   }
@@ -79,14 +89,18 @@ OrderForm.propTypes = {
   ingredients: PropTypes.object,
   totalPrice: PropTypes.string,
   setAlert: PropTypes.func,
-  resetCurrentOrder: PropTypes.func
+  resetCurrentOrder: PropTypes.func,
+  loaderOn: PropTypes.func,
+  loaderOff: PropTypes.func
 }
 
 OrderForm.defaultProps = {
   ingredients: {},
   totalPrice: '0',
   setAlert: () => {},
-  resetCurrentOrder: () => {}
+  resetCurrentOrder: () => {},
+  loaderOn: () => {},
+  loaderOff: () => {}
 }
 
 export default OrderForm

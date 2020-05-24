@@ -2,68 +2,80 @@
 
 .OrderWrapper {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   min-height: 80vh;
-  color: $color-white;
-  
-  .OrderHeaders {
-    margin-bottom: 25px;
-    text-align: center;
 
-    > h3 {
-      margin-bottom: 15px;
-      font-size: $font-lg * 3;
-      color: $color-green;
-    }
+  .OrderBurger {
+    display: none;
+    flex: 1;
 
-    > p {
-      font-size: $font-lg;
-      opacity: 0.8;
+    @media (min-width: $md) {
+      display: block;
     }
   }
+
+  .OrderInfo {
+    flex: 1;
+    color: $color-white;
+
+    .OrderHeaders {
+      margin-bottom: 25px;
+      text-align: center;
   
-  .Order {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 25px;
-    max-width: 250px;
-    width: 100%;
-    list-style: none;
-
-    > li {
-      display: flex;
-      justify-content: space-between;
-
-      > span {
-        padding: 5px 10px;
-        font-size: $font-lg + 4;
-        cursor: default;
-
-        &:last-child {
-          color: $color-yellow;
+      > h3 {
+        margin-bottom: 15px;
+        font-size: $font-lg * 3;
+        color: $color-green;
+      }
+  
+      > p {
+        font-size: $font-lg;
+        opacity: 0.8;
+      }
+    }
+    
+    .Order {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 25px;
+      max-width: 250px;
+      width: 100%;
+      list-style: none;
+  
+      > li {
+        display: flex;
+        justify-content: space-between;
+  
+        > span {
+          padding: 5px 10px;
+          font-size: $font-lg + 4;
+          cursor: default;
+  
+          &:last-child {
+            color: $color-yellow;
+          }
         }
       }
     }
-  }
+    
+    .OrderTotal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+      padding: 15px;
+      max-width: 450px;
+      width: 100%;
+      border-top: 2px solid $color-white;
   
-  .OrderTotal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    padding: 15px;
-    max-width: 450px;
-    width: 100%;
-    border-top: 2px solid $color-white;
-
-    > p {
-      font-size: $font-lg + 8;
-      letter-spacing: 1px;
-
-      > span {
-        font-weight: bold;
+      > p {
+        font-size: $font-lg + 8;
+        letter-spacing: 1px;
+  
+        > span {
+          font-weight: bold;
+        }
       }
     }
   }
